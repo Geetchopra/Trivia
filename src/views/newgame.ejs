@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Trivia Games</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <link href="style.css" rel="stylesheet" type="text/css" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    </head>
+    <body background="images/new_quiz_background.png">
+
+        <!--top resposive navigation bar begins-->
+        <div class="topnav" id="top_nav">
+            <% if(typeof username != 'undefined'){ %>
+                <a href="javascript:void(0);" id="username_nav" >Hi, <%= username %></a>
+            <% } %>
+            <a href="/" id="home_nav" >Home</a>
+            <a href="/leaderboard" id="leader_nav" >Leader Board</a>
+            <a href="javascript:void(0);" id="game_nav" class="active" >New Game</a>
+            <a href="/about" id="about_nav" >About</a>
+            <a href="/account" id="my_account_nav" >My Account</a>
+            <% if(typeof username != 'undefined'){ %>
+                <a href="/question" id="question_nav" >Manage Trivia</a>
+            <% } %>
+            <% if(typeof username != 'undefined'){ %>
+                <a href="/logout" id="log_out" >Log Out</a>
+            <% } %>
+            <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="changeNavBar()">&#9776;</a>
+        </div>
+        <!--top resposive navigation bar ends-->
+
+        <!--new game section from navigation bar begins-->
+        <div id="new_game">
+            <form id="usr_form_input" action="/newgame" method="post">
+                <label class="select_label"><b>Number of Questions:</b>
+                <input name="num_questions" id="num_questions" type="number" min="1" max="50" value="10" required></label>
+                <label class="select_label"><b>Category:</b></label>
+                <select name="trivia_cat" id="trivia_cat" required></select>
+                <label class="select_label"><b>Difficulty:</b></label>
+                <select name="diff_level" id="diff_level" class="new_game" required>
+                    <option value="">-- Select --</option>
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+                <label class="select_label"><b>Type:</b></label>
+                <select name="trivia_type" id="trivia_type" class="new_game" required>
+                    <option value="">-- Select --</option>
+                    <option value="multiple">Multiple Choice</option>
+                    <option value="boolean">True / False</option>
+                </select>
+                <div id="start_game_btns">
+                    <button type="reset" id="reset_btn">
+                        Reset
+                    </button>
+                    <button id="get_inp_btn" type="submit">
+                        Start New Game
+                    </button>
+                </div>
+            </form>
+        </div>
+        <!--new game section from navigation bar ends-->
+
+        <!--The result of trivia is displayed here after user answers the last question-->
+        <div id="score_result"></div>    
+
+        <!--trivia questions are displayed here after user begins new game-->
+        <div id="trivia_questions"> 
+            <% if (typeof questions!='undefined') {%>
+                <% for (var i=0; i<questions.length; i++) { %>
+                    <div class="single_question">
+                        <h4 class="q_name" style="margin-bottom: 10px;">Question <%= i + 1%></h4>
+                        <h3 class="q_text" style="margin-bottom: 10px;">
+                                <%-questions[i].question%>
+                        </h3>
+                        <form onsubmit="return false">
+                            <% for (var j=0; j<questions[i].choices.length; j++) { %>
+                                <input id="opt_<%= i %>-<%= j %>" type="radio" name="mult_opt" class="radio_opt" value="<%-questions[i].choices[j]%>">
+                                    <label for="opt_<%= i %>-<%= j %>" class="radio_label" onclick="questionAnswered('opt_<%= i %>-<%= j %>')">
+                                        <div class="opt_text">
+                                            <%-questions[i].choices[j]%>
+                                        </div>
+                                    </label>
+                            <%}%>
+                            <!-- <input type="radio" name="mult_opt" class="radio_opt" value=" " checked> -->
+                        </form>
+                    </div>
+                <%}%>
+            <% }%> 
+        </div>
+
+    </body>
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+    <% if (typeof correct!='undefined') {%>
+        <script>
+            var correct = <%- JSON.stringify(correct) %>
+        </script>
+    <%}%>
+    <% if (typeof error!='undefined') {%>
+        <script>
+            $(document).ready( () => {
+            alert("There are No Questions with these combinations." +
+                "\nPlease try a different combination of:" +
+                "\n\n\tNumber of Questions, Category, Difficualy, Type");
+            });
+        </script>
+    <%}%>
+</html>

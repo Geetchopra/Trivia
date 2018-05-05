@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Trivia Games</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <link href="style.css" rel="stylesheet" type="text/css" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    </head>
+    <body background="images/home_background.png">
+
+        <!--top resposive navigation bar begins-->
+        <div class="topnav" id="top_nav">
+            <% if(typeof user != 'undefined'){ %>
+                <a href="javascript:void(0);" id="username_nav" >Hi, <%= user.username %></a>
+            <% } %>
+            <a href="javascript:void(0);" id="home_nav" class="active" >Home</a>
+            <a href="/leaderboard" id="leader_nav" >Leader Board</a>
+            <a href="/newgame" id="game_nav" >New Game</a>
+            <a href="/about" id="about_nav" >About</a>
+            <a href="/account" id="my_account_nav" >My Account</a>
+            <% if(typeof user != 'undefined'){ %>
+                <a href="/question" id="question_nav" >Manage Trivia</a>
+            <% } %>
+            <% if(typeof user != 'undefined'){ %>
+                <a href="/logout" id="log_out" >Log Out</a>
+            <% } %>
+            <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="changeNavBar()">&#9776;</a>
+        </div>
+        <!--top resposive navigation bar ends-->
+
+        <!--home section from navigation bar begins-->
+        <div id="home_section">
+            <button class="play centered" id="play_btn" type="submit" onclick="location.href='newgame';">
+                Play
+            </button>
+        </div>
+        <!--home section from navigation bar ends-->
+
+    </body>
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</html>

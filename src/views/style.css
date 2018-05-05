@@ -1,0 +1,560 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+    background-size: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.centered {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  font-size: 25px;
+  white-space: nowrap;
+}
+
+#new_game * {
+  color: white;
+}
+
+option {
+  color:black !important;
+}
+
+.new_game {
+  -webkit-appearance: none;
+}
+
+#new_game:div {
+  width: 50%;
+}
+
+/*--top resposive navigation bar begins--*/
+.topnav {
+  overflow: hidden;
+  background-color: #fb706f;
+}
+.topnav a {
+  float: left;
+  /*display: block;*/
+  width:12.5%;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 14px;
+}
+.topnav a:hover {
+  background-color: #e7706e;
+  color: black;
+}
+.active {
+  background-color: #e7706e;
+  color: white;
+}
+.topnav .icon {
+  display: none;
+}
+#log_out:hover {
+  background-color: #e7706e;
+}
+#username_nav {
+  background-color: #fb706f;
+}
+#username_nav:hover {
+  background-color: #fb706f;
+  color: #f2f2f2;
+}
+/*--top resposive navigation bar ends--*/
+
+
+button {
+  display: block;
+  border: none;
+  border-radius: 4px;
+  background-color: #f4511e;
+  color: #FFFFFF;
+  font-size: 150%;
+  margin: 0;
+  margin-left: 4%;
+  margin-right: 1%;
+  padding: 15px 15px;
+  cursor: pointer;
+  outline: 0;
+  transition: .5s;
+  width:45%;
+  text-align: center;
+}
+
+button:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  transition: .5s;
+}
+
+button:active {
+  transform: translateY(5px);
+}
+
+#play_btn {
+  background-color: #fb706f;
+  padding: 15px 15px;
+  text-align: center;
+}
+
+#get_inp_btn {
+  background-color: transparent;
+  float: right;
+  border: solid;
+  width:60%;
+  padding: 15px 15px;
+  font-size: 120%;
+}
+
+#delete_btn {
+  background-color: transparent;
+  border: solid 1px;
+  border-color: white;
+  display: inline-table;
+  width:100%;
+  padding: 5px 10px;
+  font-size: 80%;
+  margin-bottom: 5px;
+  color:black;
+  float:center;
+}
+
+#reset_btn {
+  background-color: transparent;
+  float: left;
+  border: solid;
+  width: 40%;
+  text-align: center;
+  padding: 15px 15px;
+  margin: 0;
+  font-size: 110%;
+}
+
+#next_btn {
+  background-color: white;
+  float: right;
+  border: solid 1px #FE9290;
+  margin-top: 20px;
+  color: #FE9290;
+}
+
+#prev_btn {
+  background-color: white;
+  float: left;
+  border: solid 1px #FE9290;
+  margin-top: 20px;
+  color: #FE9290;
+}
+
+#get_inp_btn:disabled {
+  background-color: #e6e6e6;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+select {
+  line-height: 1.5em;
+  font-size: 15px;
+  width: 100%;
+  border: solid 1px #d9d9d9;
+  border-radius: 4px;
+  background-color: #ffffff;
+  padding: 0.5em 3.5em 0.5em 1em;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, gray 50%),
+  linear-gradient(135deg, gray 50%, transparent 50%),
+  linear-gradient(to right, #ccc, #ccc);
+  background-position: calc(100% - 20px) calc(1em + 2px),
+  calc(100% - 15px) calc(1em + 2px),
+  calc(100% - 2.5em) 0.5em;
+  background-size: 5px 5px, 5px 5px, 1px 1.5em;
+  background-repeat: no-repeat;
+  outline: 0;
+  background-color: transparent;
+}
+
+#new_game {
+  width: 50%;
+  margin-top: 30px;
+  margin-left: 25%;
+}
+
+#question_list {
+  width: 50%;
+  margin-top: 30px;
+  margin-left: 25%;
+  color:black;
+}
+
+input[type=number] {
+  line-height: 1.5em;
+  box-sizing: border-box;
+  font-size: 15px;
+  padding: 0.5em 1em;
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: solid 1px #d9d9d9;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+#question_input[type=text] {
+  line-height: 1.5em;
+  box-sizing: border-box;
+  font-size: 15px;
+  padding: 0.5em 1em;
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: solid 1px #d9d9d9;
+  border-radius: 4px;
+  background-color: transparent;
+
+}
+
+.question_input[type=text] {
+  line-height: 1.5em;
+  box-sizing: border-box;
+  font-size: 15px;
+  padding: 0.5em 1em;
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: solid 1px #d9d9d9;
+  border-radius: 4px;
+  background-color: transparent;
+
+}
+
+/*--Multiple Options--*/
+#trivia_questions {
+  display: none;
+  border-radius: 20px;
+  margin-top: 1px;
+  margin-left: 15%;
+  width: 70%;
+  background-color: white;
+}
+
+
+.radio_opt {
+  display: none;
+}
+.radio_label {
+  display: inline-grid;
+  cursor: pointer;
+  width: 43%;
+  height: 70px;
+  margin-left: 4%;
+  margin-bottom: 3px;
+  font-size: 130%;
+  border: 2px solid #e6e6e6;
+  border-radius: 15px;
+  background-color: #FE9290;
+  border-radius: 20px;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
+
+.radio_label:hover {
+  overflow: visible; 
+  white-space: normal; 
+  height:auto;
+  min-height: 100px;
+}
+
+#check_marks {
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+.opt_text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: inherit;
+  text-align: center;
+  padding: 20px 2px 30px 2px;
+}
+
+.opt_text:hover {
+  overflow: visible; 
+  white-space: normal; 
+  height:auto;
+  min-height: 100px;
+}
+
+.radio_label:touch {
+  overflow: visible; 
+  white-space: normal; 
+  height:auto;
+  min-height: 100px;
+}
+.radio_opt:hover + .radio_label {
+  border-color: #808080;
+}
+.radio_opt:checked + .radio_label {
+  font-weight: bold;
+  border-color: #FE9290;
+  background-color: #ffffff;
+  color:#FE9290;
+}
+
+.single_question {
+  display: none;
+  padding: 5%;
+  /* padding-bottom: 25%; */
+}
+div.single_question:first-child {
+  display: block;
+  
+}
+div.single_question:first-child button.radio_btn_prev {
+  display: none;
+}
+/*--Multiple Options ends--*/
+
+#score_result {
+  display: inline-grid;
+  margin-top: 5%;
+  margin-left: 25%;
+  font-weight: bold;
+  font-size: 125%;
+}
+
+#start_game_btns{
+  display: flex;
+}
+
+h2 {
+  margin-bottom: 40px;
+  margin-left: -50%;
+  text-align: center;
+}
+
+h3.q_text {
+  font-size: 140%;
+  color: rgb(43, 196, 43);
+  text-align: center;
+}
+
+h4.q_name {
+  font-size: 120%;
+  color: #FE9290;
+  text-align: center;
+}
+
+h4.q_delete {
+  font-size: 120%;
+  color: black;
+  text-align: center;
+}
+h4.l_name {
+  font-size: 120%;
+  color: black;
+  text-align: left
+}
+
+h4.l_score {
+  font-size: 120%;
+  color: black;
+  text-align: center;
+}
+
+
+/*---Temporary text box for Home and About text sections---*/
+
+.text_section {
+  border-radius: 30px;
+  border: 4px solid #F4D03F;
+  padding: 3%; 
+  width: 80%;
+  height: 60%; 
+  text-align: center;
+  margin-left: 10%;
+  margin-top: 5%;
+  background-color: #fc9c99;
+  
+}
+
+.play {
+  border-radius: 30px;
+  padding: 3%; 
+  width: 12%;
+  height: 7%; 
+  text-align: center;
+  font-size: 150%;
+  font-weight: bold;
+  margin-left: 45%;
+  margin-top: 35%;
+}
+
+
+/*---My Account Login / Register section begins---*/
+.loginSec {
+    width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 30px 30px 30px;
+    background-color:rgb(255,255,255,0.75);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.loginSec form {
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+}
+.loginSec input[type="text"],
+[type="email"],
+[type="password"] {
+    display: block;
+    outline: 0;
+    padding: 12px 15px;
+    border: 1px solid #000;
+    width: 100%;
+    letter-spacing: 1px;
+    box-sizing: border-box;
+}
+.loginSec label {
+    display: block;
+    margin: 20px 0px 8px 0px;
+    font-size: 13px;
+    color: #000;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+.loginSec input[type="submit"],
+[type="reset"] {
+    display: block;
+    margin: 10px auto;
+    padding: 9px 60px;
+    font-size: 18px;
+    border: none;
+    background-color:#13caca;
+    color: #fff;
+    text-transform: uppercase;
+    outline: 0;
+    border: 2px solid #13caca;
+    cursor: pointer;
+    width: 100%;
+    letter-spacing: 1px;    
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+}
+.loginSec input[type="reset"] {
+    background-color:red;
+    border: 2px solid red;
+}
+.loginSec input[type="submit"]:hover {
+    color: #13caca;
+    background-color: #fff;
+    border: 2px solid #13caca;
+}
+.loginSec input[type="reset"]:hover {
+    color: red;
+    background-color: #fff;
+    border: 2px solid red;
+}
+
+/* Chrome/Opera/Safari */
+::-webkit-input-placeholder {
+  color: #ccc6c6;
+}
+
+/* Firefox 19+ */
+::-moz-placeholder {
+  color: #ccc6c6;
+}
+
+/* IE 10+ */
+:-ms-input-placeholder {
+  color: #ccc6c6;
+}
+
+/* Firefox 18- */
+:-moz-placeholder {
+  color: #ccc6c6;
+}
+/*---My Account Login / Register section ends---*/
+
+
+
+
+
+
+
+
+
+
+
+/*--MUST BE THE LAST ELEMENT AT ALL TIMES--*/
+/*--changes style for smaller screens--*/
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: block;
+    float: right;
+    width:15%;
+    height: 9.7%;
+  }
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width:15%;
+    height: auto;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: center;
+    width:100%;
+  }
+  #new_game {
+    margin: 10px auto;
+    width: 360px;
+  }
+  ul {
+    margin-left: 40px;
+  }
+  #trivia_questions {
+    margin: 10px auto;
+    width: 90%;
+  }
+  #score_result {
+  margin-top: 20px;
+  margin-left: 25%;
+  }
+  
+  .single_question {
+    margin-top: 30px;
+  }
+
+  .play {
+    border-radius: 10px;
+    margin-top: 30%;
+    width: 20%;
+  }
+}
+/*--style for smaller screens ends--*/

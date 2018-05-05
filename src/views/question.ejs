@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Trivia Games</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <link href="style.css" rel="stylesheet" type="text/css" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    </head>
+    <body background="images/new_quiz_background.png">
+
+        <!--top resposive navigation bar begins-->
+        <div class="topnav" id="top_nav">
+            <% if(typeof username != 'undefined'){ %>
+                <a href="javascript:void(0);" id="username_nav" >Hi, <%= username %></a>
+            <% } %>
+            <a href="/" id="home_nav" >Home</a>
+            <a href="/leaderboard" id="leader_nav" >Leader Board</a>
+            <a href="/newgame" id="game_nav" >New Game</a>
+            <a href="/about" id="about_nav" >About</a>
+            <a href="/account" id="my_account_nav" >My Account</a>
+            <% if(typeof username != 'undefined'){ %>
+                <a href="javascript:void(0);" id="question_nav" class="active" >Manage Trivia</a>
+            <% } %>
+            <% if(typeof username != 'undefined'){ %>
+                <a href="/logout" id="log_out" >Log Out</a>
+            <% } %>
+            <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="changeNavBar()">&#9776;</a>
+        </div>
+        <!--top resposive navigation bar ends-->
+        <div id="new_game">
+            <% if(typeof question != 'undefined'){ %>
+                <% if(typeof question._id != 'undefined'){ %>
+                    <form id="usr_form_input" action="/question?_method=PUT" method="post">
+                <% } else { %>
+                    <form id="usr_form_input" action="/question" method="post">
+                <% } %>
+            <% } else {%>
+                <form id="usr_form_input" action="/question" method="post">
+            <% } %>
+                <% if(typeof err != 'undefined'){ %>
+                    <div style="text-align: center;">
+                        <label style="color: black"><%= err %></label>
+                    </div>
+                <% } %>
+                <% if(typeof question != 'undefined'){ %>
+                    <% if(typeof question._id != 'undefined'){ %>
+                    <input type="hidden" name="questionId" value="<%= question._id %>">
+                    <% } %>
+                <label class="select_label"><b>Enter the question:</b>
+                <input name="question" id="question_input" type="text" value="<%= question.question %>" required></label>
+                <label class="select_label"><b>Category:</b></label>
+                <select name="category" id="trivia_cat" value="<%= question.category %>" required></select>
+                <label class="select_label"><b>Difficulty:</b></label>
+                <select name="difficulty" id="diff_level" class="new_game" value="<%= question.difficulty %>" required>
+                    <option value="">-- Select --</option>
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+                <label class="select_label"><b>Type:</b></label>
+                <select name="type" id="trivia_manage_type" class="new_game" value="<%= question.type %>" required>
+                    <option value="">-- Select --</option>
+                    <option value="multiple">Multiple Choice</option>
+                    <option value="boolean">True / False</option>
+                </select>
+                <div id="multiple_answers" style="<%= question.type === 'boolean' ? 'display:none;' : ''%>">
+                    <label class="select_label"><b>Answer</b></label>
+                    <input name="correct_answer" id="question_input1" class="question_input" value="<%= question.correct_answer %>" type="text" </label>
+                    <label class="select_label"><b>Option2</b></label>
+                    <input name="incorrect_answers" id="question_input2" class="question_input" value="<%= question.incorrect_answers[0] %>" type="text" </label>
+                    <label class="select_label"><b>Option3</b></label>
+                    <input name="incorrect_answers" id="question_input3" class="question_input" value="<%= question.incorrect_answers[1] %>" type="text" </label>
+                    <label class="select_label"><b>Option4</b></label>
+                    <input name="incorrect_answers" id="question_input4" class="question_input" value="<%= question.incorrect_answers[2] %>" type="text" </label>
+                </div>
+                <div id="boolean_answers" style="<%= question.type === 'multiple' ? 'display:none;' : ''%>">
+                    <label class="select_label"><b>Answer</b></label>
+                    <select name="correct_answer" id="boolean_answer1" value="<%= question.correct_answer %>"class="new_game" </select>>
+                            <option value="">-- Select --</option>
+                            <option value="True">True</option>
+                            <option value="False">False</option>
+                    </select>
+                    <label class="select_label"><b>Option2</b></label>
+                    <select name="incorrect_answers" id="boolean_answer2" value="<%= question.incorrect_answers[0] %>"class="new_game" </select>>
+                            <option value="">-- Select --</option>
+                            <option value="True">True</option>
+                            <option value="False">False</option>
+                    </select>
+                </div>
+
+                <% } else {%>
+                <label class="select_label"><b>Enter the question:</b>
+                <input name="question" id="question_input" type="text" required></label>
+                <label class="select_label"><b>Category:</b></label>
+                <select name="category" id="trivia_cat" required></select>
+                <label class="select_label"><b>Difficulty:</b></label>
+                <select name="difficulty" id="diff_level" class="new_game" required>
+                    <option value="">-- Select --</option>
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+                <label class="select_label"><b>Type:</b></label>
+                <select name="type" id="trivia_manage_type" class="new_game" required>
+                    <option value="">-- Select --</option>
+                    <option value="multiple">Multiple Choice</option>
+                    <option value="boolean">True / False</option>
+                </select>
+                <div id="multiple_answers" style="display: none;">
+                    <label class="select_label"><b>Answer</b></label>
+                    <input name="correct_answer" id="question_input1" class="question_input" type="text"></label>
+                    <label class="select_label"><b>Option2</b></label>
+                    <input name="incorrect_answers" id="question_input2" class="question_input" type="text"></label>
+                    <label class="select_label"><b>Option3</b></label>
+                    <input name="incorrect_answers" id="question_input3" class="question_input" type="text"></label>
+                    <label class="select_label"><b>Option4</b></label>
+                    <input name="incorrect_answers" id="question_input4" class="question_input" type="text"></label>
+                </div>
+                <div id="boolean_answers" style="display: none;">
+                    <label class="select_label"><b>Answer</b></label>
+                    <select name="correct_answer" id="boolean_answer1" class="new_game">
+                            <option value="">-- Select --</option>
+                            <option value="True">True</option>
+                            <option value="False">False</option>
+                    </select>
+                    <label class="select_label"><b>Option2</b></label>
+                    <select name="incorrect_answers" id="boolean_answer2" class="new_game">
+                            <option value="">-- Select --</option>
+                            <option value="True">True</option>
+                            <option value="False">False</option>
+                    </select>
+                </div>
+                <% } %>
+                <div id="start_game_btns">
+                    <button type="reset" id="reset_btn">
+                        Reset
+                    </button>
+                    <% if(typeof question != 'undefined'){ %>
+                        <% if(typeof question._id != 'undefined'){ %>
+                            <button id="get_inp_btn" type="submit">Update Question</button>
+                        <% } else { %>
+                            <button id="get_inp_btn" type="submit">Submit Question</button>
+                        <% } %>
+                    <% } else {%>
+                        <button id="get_inp_btn" type="submit">Submit Question</button>
+                    <% } %>
+                </div>
+            </form>
+        </div>
+<script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+</html>
