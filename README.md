@@ -1,4 +1,4 @@
-# Trivia
+# Trivia Magic
 
 This is a project me and my team made for a course at the University of Toronto. This trivia app has a lot of cool features including saving your scores, adding your own questions and many more! Check them out at -
 
